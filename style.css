@@ -217,3 +217,61 @@
  
   letter-spacing: 0.5px;   
 }
+
+
+.weekly-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 1rem;
+  background-color: #f1f8f9;
+  padding: 1rem;
+  border-radius: 12px;
+  overflow-y: auto; /* scroll if needed */
+  height: calc(100% - 300px); /* adjust based on upper content */
+}
+
+.weekly-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+}
+
+.weekly-card .day-name {
+  font-weight: 600;
+}
+
+.weekly-card .weekly-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.weekly-card .temp {
+  font-weight: 500;
+}
+
+.weekly-card .desc {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+
+#app-footer {
+  background-color: #2c3e50;  /* Dark blue/gray instead of black */
+  color: #f1c40f;             /* Golden/yellow text for warmth */
+  text-align: center;
+  padding: 15px 0;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  position: relative;  /* stays at bottom naturally */
+  width: 100%;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+}
+
+#app-footer p {
+  margin: 0;
+}

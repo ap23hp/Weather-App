@@ -1,4 +1,4 @@
-const iconMap = {
+export const iconMap = {
   clear: "01d",
   sunny: "01d",
 
@@ -27,14 +27,14 @@ const iconMap = {
   "freezing rain": "13d",
 
   windy: "50d",
-  breezy: "50d"
+  breezy: "50d",
 };
 
 const div = document.querySelector("#weather");
 const img = document.querySelector("#giphy-img");
 const errorMsg = document.querySelector("#error-msg"); // Add this in HTML
-const cardDaily=document.querySelector("#forecast")
-
+const cardDaily = document.querySelector("#forecast");
+const weeklyDiv = document.getElementById("weekly-cards");
 function formatToAMPM(timeStr) {
   let [hour, minute, second] = timeStr.split(":");
   let date = new Date();
@@ -48,7 +48,7 @@ function formatToAMPM(timeStr) {
 }
 
 export function renderWeather(dataObj, unit) {
-   let condition = dataObj.conditions.toLowerCase(); // normalize
+  let condition = dataObj.conditions.toLowerCase(); // normalize
   let iconCode = "01d"; // default sunny
 
   // find matching keyword
@@ -63,14 +63,14 @@ export function renderWeather(dataObj, unit) {
   // formatted date-time
   const now = new Date();
   const formattedDate = now.toLocaleString("en-GB", {
-    weekday: "long",   // Monday
-    day: "2-digit",    // 15
-    month: "short",    // Sep
-    year: "numeric",   // 2025
-    hour: "2-digit",   // 11
+    weekday: "long", // Monday
+    day: "2-digit", // 15
+    month: "short", // Sep
+    year: "numeric", // 2025
+    hour: "2-digit", // 11
     minute: "2-digit", // 45
-    hour12: true    ,   // AM/PM
-      timeZone: "Asia/Kolkata" 
+    hour12: true, // AM/PM
+    timeZone: "Asia/Kolkata",
   });
   div.innerHTML = `
     <h2>${dataObj.address}</h2>
@@ -85,35 +85,53 @@ export function renderWeather(dataObj, unit) {
       </div>
     </div>
   `;
-  cardDaily.innerHTML=`
-        <h2 id="today-details">Today's Weather Details</h2>
-        <div class="cards">
-         <div class="card">
-          <p class="datetime">Sunrise</p>
-          <p class="datetime">${formatToAMPM(dataObj.sunrise)}</p>
+  cardDaily.innerHTML = `
+  <h2 id="today-details">Today's Weather Details</h2>
+  <div class="cards">
+    <div class="card">
+      <p class="datetime">Sunrise</p>
+      <p class="datetime">${formatToAMPM(dataObj.sunrise)}</p>
+    </div>
+    <div class="card">
+      <p class="datetime">Sunset</p>
+      <p class="datetime">${formatToAMPM(dataObj.sunset)}</p>
+    </div>
+    <div class="card">
+      <p class="datetime">Visibility</p>
+      <p class="datetime">${dataObj.visibility}Km</p>
+    </div>
+    <div class="card">
+      <p class="datetime">Humidity</p>
+      <p class="datetime">${dataObj.humidity}%</p>
+    </div>
+    <div class="card">
+      <p class="datetime">Wind Speed</p>
+      <p class="datetime">${dataObj.windspeed}Km/hr</p>
+    </div>
+    <div class="card">
+      <p class="datetime">Wind Direction</p>
+      <p class="datetime">${dataObj.winddirection} &deg;</p>
+    </div>
+  </div>
+
+  <h2 id="today-details">7-Day Forecast</h2>
+  <div class="weekly-cards" id="weekly-cards">
+    ${dataObj.weeklyForcast
+      .map(
+        (day) => `
+        <div class="weekly-card">
+          <p class="date">${day.formattedDates}</p>
+          <p class="day-name">${day.dayName}</p>
+          <img src="${day.iconUrl}" alt="${day.desc}" class="weekly-icon"/>
+          <p class="temp">${day.maxTemp}° / ${day.minTemp}°</p>
+          <p class="desc">${day.desc}</p>
         </div>
-         <div class="card">
-          <p class="datetime">Sunset</p>
-          <p class="datetime">${formatToAMPM(dataObj.sunset)}</p>
-        </div>
-         <div class="card">
-          <p class="datetime">Visibility</p>
-          <p class="datetime">${dataObj.visibility}Km</p>
-        </div>
-         <div class="card">
-          <p class="datetime">Humidity</p>
-          <p class="datetime">${dataObj.humidity}%</p>
-        </div>
-         <div class="card">
-          <p class="datetime">Wind Speed</p>
-          <p class="datetime">${dataObj.windspeed}Km/hr</p>
-        </div>
-              <div class="card">
-          <p class="datetime">Wind Direction</p>
-          <p class="datetime">${dataObj.winddirection} &deg;</p>
-        </div>
-           </div>
-  `
+      `
+      )
+      .join("")}
+  </div>
+`;
+  
 }
 export function renderGiphy(giphyobj) {
   img.src = giphyobj.src;
