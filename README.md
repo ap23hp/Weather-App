@@ -5,7 +5,9 @@ A modern web application that displays the current weather, daily details, and a
 Built with JavaScript, HTML, and CSS, it integrates data from **Visual Crossing Weather API** and provides dynamic weather icons.
 
 ---
+## 🔗 Live Demo
 
+Check out the app here: [Weather App Live Demo](https://ap23hp.github.io/Weather-App/)
 ## Features
 
 - 🌎 Search weather by city name  
@@ -17,8 +19,5 @@ Built with JavaScript, HTML, and CSS, it integrates data from **Visual Crossing 
 - 🎨 Smooth, modern color scheme  
 
 ---
-[Click here]((https://ap23hp.github.io/Weather-App/
-)
-
 
 Made with ❤️ by Apra Khanna
