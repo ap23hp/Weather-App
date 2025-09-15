@@ -33,6 +33,20 @@ const iconMap = {
 const div = document.querySelector("#weather");
 const img = document.querySelector("#giphy-img");
 const errorMsg = document.querySelector("#error-msg"); // Add this in HTML
+const cardDaily=document.querySelector("#forecast")
+
+function formatToAMPM(timeStr) {
+  let [hour, minute, second] = timeStr.split(":");
+  let date = new Date();
+  date.setHours(hour, minute, second);
+
+  return date.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+}
+
 export function renderWeather(dataObj, unit) {
    let condition = dataObj.conditions.toLowerCase(); // normalize
   let iconCode = "01d"; // default sunny
@@ -71,6 +85,35 @@ export function renderWeather(dataObj, unit) {
       </div>
     </div>
   `;
+  cardDaily.innerHTML=`
+        <h2 id="today-details">Today's Weather Details</h2>
+        <div class="cards">
+         <div class="card">
+          <p class="datetime">Sunrise</p>
+          <p class="datetime">${formatToAMPM(dataObj.sunrise)}</p>
+        </div>
+         <div class="card">
+          <p class="datetime">Sunset</p>
+          <p class="datetime">${formatToAMPM(dataObj.sunset)}</p>
+        </div>
+         <div class="card">
+          <p class="datetime">Visibility</p>
+          <p class="datetime">${dataObj.visibility}Km</p>
+        </div>
+         <div class="card">
+          <p class="datetime">Humidity</p>
+          <p class="datetime">${dataObj.humidity}%</p>
+        </div>
+         <div class="card">
+          <p class="datetime">Wind Speed</p>
+          <p class="datetime">${dataObj.windspeed}Km/hr</p>
+        </div>
+              <div class="card">
+          <p class="datetime">Wind Direction</p>
+          <p class="datetime">${dataObj.winddirection} &deg;</p>
+        </div>
+           </div>
+  `
 }
 export function renderGiphy(giphyobj) {
   img.src = giphyobj.src;

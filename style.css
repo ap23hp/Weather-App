@@ -162,3 +162,58 @@
   font-size: 1.1rem;
   color: #555;
 }
+
+.cards {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between; /* space evenly */
+  flex-wrap: nowrap; /* wrap na ho */
+  padding: 0.5rem 0;
+}
+
+.card {
+  flex: 1;                /* har card equal space le */
+  min-width: 80px;        /* chhoti width */
+  max-width: 120px;       /* agar aur chhoti ho toh limit */
+  background: #ffffff10;  /* translucent look */
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: 0.5rem;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* Card headings (like Sunrise, Sunset, etc.) */
+.card .datetime:first-child {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffda79;   /* golden highlight for titles */
+  margin-bottom: 0.5rem;
+}
+
+/* Card values (actual data like time, % etc.) */
+.card .datetime:last-child {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color:#00796b;
+}
+
+#today-details {
+  font-size: 1.2rem;       /* thoda bada aur prominent */
+  font-weight: 700;       
+  color:   #158190;    
+  margin-bottom: 0.8rem;  
+ 
+  letter-spacing: 0.5px;   
+}

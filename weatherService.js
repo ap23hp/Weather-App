@@ -11,6 +11,12 @@ console.log(data)
       temperature: data.currentConditions.temp,
       conditions: data.currentConditions.conditions,
       icon: data.currentConditions.icon,
+      sunrise:data.currentConditions.sunrise,
+        sunset:data.currentConditions.sunset,
+        visibility:data.currentConditions.visibility,
+        humidity:data.currentConditions.humidity,
+        windspeed:data.currentConditions.windspeed,
+        winddirection:data.currentConditions.winddir
     };
   } catch (error) {
     console.error("Error fetching weather:", error);
