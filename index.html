@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>weather-app</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+   <div class="weather-container">
+  <!-- Left column: current weather + GIF + form -->
+  <div class="weather-left">
+    <form id="search-form">
+      <input type="text" id="city-input" placeholder="Enter a city..." required />
+      <button id="submit-btn" type="submit">Get Weather</button>
+    </form>
+    <button id="unit-toggle">Switch to °C</button>
+
+    <div id="weather"></div>
+    <div class="gif">
+      <img id="giphy-img" alt="Weather GIF" />
+      <p id="error-msg"></p>
+    </div>
+  </div>
+
+  <!-- Right column: extra info (7-day forecast, etc.) -->
+  <div class="weather-right">
+    <div id="forecast"></div>
+  </div>
+</div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
